@@ -15,4 +15,5 @@ header-height           | 48px                 | Height of the header bar in pix
 nav-width               | 200px                | Width of the left sidebar in pixels
 header-background-color | #393939 (dark grey)  | Background color of the header bar
 nav-background-color    | #F8F8F8 (light grey) | Background color of the left sidebar
-toggle-color            | #FFFFFF              | Background color of the main screen
+main-background-color   | #FFFFFF              | Background color of the main screen
+toggle-color            | #FFFFFF              | Text color of the toggle
