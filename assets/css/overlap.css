@@ -1,0 +1,26 @@
+/* Responsive Layout */
+@media screen and (max-width: 768px) {
+
+	/* When body has class .overlap, then the content of #wrapper isn't squeezed while opening the nav */
+	body.overlap main > nav {
+		position: absolute;
+		bottom: 0;
+		top: var(--header-height, 48px);
+		left: 0;
+		z-index: 3;
+    transform: scale(1);
+    overflow-y: initial;
+	}
+	
+	
+	body.overlap.open main > nav::after{
+		background: rgba(0,0,0, 0.5);
+		height: 100%;
+		content:"";
+		position: absolute;
+		right: -100vw;
+		left: var(--nav-width, 200px)
+	}
+	
+}
+/* /Responsive Layout */

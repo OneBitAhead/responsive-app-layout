@@ -8,7 +8,6 @@ box-sizing: border-box;
 background-color: var(--main-background-color, #FFFFFF);
 height: 100vh;
 width: 100vw;
-overflow: hidden;
 /* target system fonts */
 font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
 }
@@ -72,6 +71,10 @@ main > *{
   overflow-y: auto;
 }
 
+html, body, main {
+	overflow: hidden;
+}
+
 
 /* /Main layout */
 
@@ -80,14 +83,6 @@ main > *{
 	
 	body:not(.open) main > nav {
 		margin-left: calc(-1 * var(--nav-width, 200px))
-	}
-	
-	/* When body has class .overlap, then the content of #wrapper isn't squeezed while opening the nav */
-	body.overlap main > nav {
-		position: absolute;
-		bottom: 0;
-		top: var(--header-height, 48px);
-		left: 0;
 	}
 	
 	#nav-toggle{
