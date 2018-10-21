@@ -72,6 +72,7 @@ body:not(.open) main > nav {
 main > nav {
 background-color: var(--nav-background-color, #F8F8F8);
 width: var(--nav-width, 200px);
+min-width: var(--nav-width, 200px);
 transition: margin-left 0.25s ease-in-out;
 }
 
