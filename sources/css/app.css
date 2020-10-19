@@ -59,12 +59,21 @@ line-height: var(--header-height, 48px);
 }
 
 #nav-toggle{
-	display:none;
+  /*display:none;*/
+  margin: auto 1em;
+  color: var(--toggle-color, #FFFFFF);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+body:not(.open) main > nav {
+  margin-left: calc(-1 * var(--nav-width, 200px))
 }
 
 main > nav {
 background-color: var(--nav-background-color, #F8F8F8);
 width: var(--nav-width, 200px);
+min-width: var(--nav-width, 200px);
 transition: margin-left 0.25s ease-in-out;
 }
 
@@ -82,16 +91,8 @@ html, body, main {
 /* Responsive Layout */
 @media screen and (max-width: 768px) {
 	
-	body:not(.open) main > nav {
-		margin-left: calc(-1 * var(--nav-width, 200px))
-	}
-	
 	#nav-toggle{
 		display:inline-block;
-		margin: auto 1em;
-		color: var(--toggle-color, #FFFFFF);
-		font-weight: bold;
-		cursor: pointer;
 	}
 	
 }
