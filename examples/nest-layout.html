@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fictional App</title>
+    <style>
+        html, body {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+
+            
+            --header-background-color: #0077DD;
+            --header-height: 48px;
+            --header-box-shadow: 0px 5px 5px 0px rgba(192,192,196,0.5);
+
+            --sidebar-width: 80px;
+            --sidebar-background-color: #F9F9F9;
+            --sidebar-border: 1px solid #eee;
+
+            --toggle-color: #FFFFFF;
+
+            --sidebar-open-main-filter: blur(1px);
+
+            font-family:Segoe UI WestEuropean,Segoe UI,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;-webkit-font-smoothing:antialiased;
+        }
+
+        responsive-app-layout {
+            width:100%;
+            height: 100%;
+        }
+
+        #nest-area{
+            --sidebar-width: 200px; 
+            --header-background-color: #F9F9F9; 
+            --sidebar-background-color: white;
+            
+            --toggle-color: #333;
+
+            --sidebar-open-main-filter: none;
+        }
+
+        ul {
+            list-style-type: none;
+            margin:auto; 
+            padding: 0; 
+        }
+
+        #apps > li {
+            text-align:center;
+            padding:15px 0;
+            color: #444444;
+            cursor: pointer;
+        }
+
+        #apps > li.active,
+        #apps > li:hover {
+            background: rgba(192,192,196,0.5);
+            color: #000;
+        }
+
+        .command-bar button {
+            background-color: rgba(192,192,196,0.1);
+            border: 1px solid transparent;
+            padding: 5px 10px
+        }
+
+        .command-bar button:hover {
+            background-color: rgba(192,192,196,0.3);
+            border: 1px solid #0077DD;
+        } 
+
+        .command-bar b{
+            color: #0077DD;
+            font-size: 1.2em
+        }
+
+        section {
+            padding: 1rem
+        }
+
+        section .persona {
+            font-size: 1.5em;
+        }
+
+        section  .avatar {
+            color: white;
+            background-color: #005599;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            font-size: 1em;
+            display: inline-block;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .meta {
+            color: #666666;
+            padding-left: 60px;
+            border-bottom: var(--sidebar-border)
+        }
+
+        .meta h3 {
+            color: #000;
+            font-weight: normal;
+        }
+
+        #mails{
+            font-size: 10px
+        }
+
+        #mails section {
+            padding: 5px 1rem 
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+    <script src="../responsive-app-layout.min.js"></script>
+
+    <responsive-app-layout overlap>
+        <div slot="header" style="box-sizing: border-box; padding: 0 1rem; color: white;"> Responsive App Layout Web Component</div>
+        
+        <div slot="sidebar">
+
+            <ul id="apps">
+                <li class="active">&#x2709<br />Mail</li>
+                <li>&#x260e<br />Contacts</li>
+                <li>&#x2708<br />Travels</li>
+                <li>&#128447<br />Files</li>
+                <li>&#x2764<br />Favorites</li>
+            </ul>
+
+        </div>
+        
+        <span slot="main" id="nest-area">
+            
+            <responsive-app-layout open>
+                <span slot="icon"> &lt; </span>
+                <span slot="header" class="command-bar" style="color: #333; padding: 0 1rem">
+                    <span>Command:</span>
+                    <button><b>&#x2B</b> New</button>
+                    <button><b>&#x21bb</b> Refresh</button>
+                    <button><b>&#x20AA</b> Attachments</button>
+                </span>
+                <span slot="sidebar">
+                    <div style="border-bottom: var(--sidebar-border);padding: 1em 0.5em ">A list of mails:</div>
+                    <ul id="mails">
+                        <li>
+                            <section>
+                        
+                                <div class="persona">
+                                    <span class="avatar">B</span>Brian
+                                </div>
+                                <ul class="meta">
+                                    <li>Mo, 19.10.2020 12:52</li>
+                                    <li><h3>I shared some files with you</h3></li>
+                                </ul>
+                                
+                            </section>
+                        </li>
+                        <li>
+                            <section>
+                        
+                                <div class="persona">
+                                    <span class="avatar">T</span>Thomas
+                                </div>
+                                <ul class="meta">
+                                    <li>Fr, 16.10.2020 23:17</li>
+                                    <li><h3>We are done!</h3></li>
+                                </ul>
+                                
+                            </section>
+                        </li>
+                        <li>
+                            <section>
+                        
+                                <div class="persona">
+                                    <span class="avatar">S</span>Spencer
+                                </div>
+                                <ul class="meta">
+                                    <li>Mo, 12.10.2020 11:11</li>
+                                    <li><h3>Late for meeting</h3></li>
+                                </ul>
+                                
+                            </section>
+                        </li>
+                    </ul>
+                
+                </span>
+                <span slot="main">
+                    <section>
+                        
+                        <div class="persona">
+                            <span class="avatar">B</span>Brian &lt;brian@example.com&gt;
+                        </div>
+                        <ul class="meta">
+                            <li>Mo, 19.10.2020 12:52</li>
+                            <li>To: Me, 2 others</li>
+                            <li><h3>I shared some files with you</h3></li>
+                        </ul>
+                        
+                        <p>I uploaded the presentation files to our team share. Please review!</p>
+
+                    </section>
+                </span>
+
+            </responsive-app-layout>
+
+        </span>
+    </responsive-app-layout>
+
+</body>
+</html>

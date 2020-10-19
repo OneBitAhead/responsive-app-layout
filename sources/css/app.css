@@ -1,0 +1,98 @@
+/* Reset */
+body,
+html 
+{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+background-color: var(--main-background-color, #FFFFFF);
+height: 100vh;
+width: 100vw;
+/* target system fonts */
+font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
+}
+/* /Reset */
+
+/* Variables */
+body {
+	--header-height: 48px;
+	--nav-width: 200px;
+	--header-background-color: #393939;
+	--nav-background-color: #F8F8F8;
+	--main-background-color: #FFFFFF;
+	--toggle-color: #FFFFFF;
+}
+/* /Variables */
+
+
+/* Flexbox layout */
+.flex-container {
+display: flex;
+flex-direction: row;
+flex-wrap: nowrap;
+justify-content: flex-start;
+align-content: stretch;
+align-items: stretch;
+}
+
+.flex-container.vertical {
+flex-direction: column;
+}
+
+.flex-container > * {
+order: 0;
+flex: 0 1 auto;
+align-self: auto;
+}
+
+.flex-container > .stretch {
+flex: 1 1 auto;
+}	
+/* /Flexbox layout */
+
+/* Main layout */
+body > header{
+background-color: var(--header-background-color, #393939);
+height: var(--header-height, 48px);
+min-height: var(--header-height, 48px);
+line-height: var(--header-height, 48px);
+}
+
+#nav-toggle{
+	display:none;
+}
+
+main > nav {
+background-color: var(--nav-background-color, #F8F8F8);
+width: var(--nav-width, 200px);
+transition: margin-left 0.25s ease-in-out;
+}
+
+main > *{
+  overflow-y: auto;
+}
+
+html, body, main {
+	overflow: hidden;
+}
+
+
+/* /Main layout */
+
+/* Responsive Layout */
+@media screen and (max-width: 768px) {
+	
+	body:not(.open) main > nav {
+		margin-left: calc(-1 * var(--nav-width, 200px))
+	}
+	
+	#nav-toggle{
+		display:inline-block;
+		margin: auto 1em;
+		color: var(--toggle-color, #FFFFFF);
+		font-weight: bold;
+		cursor: pointer;
+	}
+	
+}
+/* /Responsive Layout */

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style Dimensions and Colors of Layout</title>
+    <style>
+        html, body {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            
+            --header-background-color: #333;
+            --header-height: 48px;
+            --header-box-shadow: 0px 5px 5px 0px rgba(192,192,196,0.5);
+
+            --sidebar-width: 300px;
+            --sidebar-background-color: #ccc;
+            --sidebar-border: 1px solid #eee;
+        }
+
+        /* Make the layout fill the complete screen */
+        responsive-app-layout {
+            width:100%;
+            height: 100%;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <script src="../responsive-app-layout.min.js"></script>
+
+    <responsive-app-layout>
+        <span slot="header" style="color: white">Responsive App Layout Web Component</span>
+        <span slot="sidebar">Sidebar</span>
+        <span slot="main">
+            <p>There is so much text to be written here. 
+            It can even be <b style="color:red">markup</b> or alike.</p>
+            <p>See all configuration options for CSS properties in the README.md</p>
+        </span>
+    </responsive-app-layout>
+
+</body>
+</html>

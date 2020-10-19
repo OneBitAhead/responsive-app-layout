@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make the Sidebar Overlap The Main Area</title>
+    <style>
+        html, body {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+        }
+
+        /* Make the layout fill the complete screen */
+        responsive-app-layout {
+            width:100%;
+            height: 100%;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <script src="../responsive-app-layout.min.js"></script>
+
+    <responsive-app-layout overlap>
+        <span slot="header" style="color: white">Responsive App Layout Web Component</span>
+        <span slot="sidebar">Overlapping Sidebar</span>
+        <span slot="main"><p>The content will be overlapped by the sidebar in responsive mode (&lt;768px width)</p></span>
+    </responsive-app-layout>
+
+</body>
+</html>
