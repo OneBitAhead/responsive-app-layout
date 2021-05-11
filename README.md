@@ -51,12 +51,12 @@ Parameter               | Default Value | Description
 ### Properties
 
 Property               | Type | Default Value | Is Observed Attribtue | Description
------------------------ | -------------------- | -----------------------------------
+----------------------- | ----| ---------------- | --------------------- | -----------------------------------
 overlap | boolean | false | Yes | Whether the opened sidebar should overlap the main areas content
 open | boolean | false | Yes | Whether the sidebar is open in responsive mode
 breakpoint | number | 768 | Yes | Defines the minimum width of the viewport (in px) where the sidebar is constantly open
 position | string | `left` | Yes |Position of the sidebar. May be `left` or `right`
-sidebarCloseSelector | string | `[data-sidebar-close]` | Clicks on elements in sidebar matching this selector will close the sidebar
+sidebarCloseSelector | string | `[data-sidebar-close]` | No | Clicks on elements in sidebar slot matching this selector will close the sidebar
 
 
 &nbsp;
