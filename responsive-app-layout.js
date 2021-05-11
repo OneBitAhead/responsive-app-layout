@@ -63,7 +63,7 @@ main {
 
 
 /* Responsive Layout */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: ${this._breakpoint||768}px) {
 	
 	main:not(.open) > nav {
 		margin-left: calc(-1 * var(--sidebar-width, 200px))
@@ -121,7 +121,7 @@ main {
                     <span class="nav-toggle"><slot name="icon">&#9776;</slot></span>
                     <slot name="header"></slot>
                 </header>
-                <main class="flex-container stretch ${(this.overlap)?'overlap':''} ${(this.open)?'open':''}">
+                <main class="flex-container stretch ${(this.overlap)?'overlap':''} ${(this.open)?'open':''} position-${this._position}">
                 
                     <nav>
                         <slot name="sidebar"></slot>
@@ -141,6 +141,8 @@ main {
     constructor(){
         super();
         this._refs = {};
+        this._position = 'left';
+        this._breakpoint = 768;
     }
 
     get overlap(){
@@ -148,7 +150,7 @@ main {
     }
 
     set overlap(value){
-        this._setBoolean('overlap', value)
+        this._setBoolean('overlap', value);
     }
 
     get open(){
@@ -156,7 +158,31 @@ main {
     }
 
     set open(value){
-        this._setBoolean('open', value)
+        this._setBoolean('open', value);
+    }
+
+    get position(){
+      return this._position;
+    }
+
+    set position(value){
+      if(value != this._position && ['left', 'right'].indexOf(value) > -1) this._position = value;
+      // Update shadow DOM
+      let p = (this._position === 'left');
+      this._refs.main.classList[p?'add':'remove']('position-left');
+      this._refs.main.classList[p?'remove':'add']('position-right');
+    }
+
+    get breakpoint(){
+      return this._breakpoint;
+    }
+
+    set breakpoint( value ){
+      let parsed = parseInt(value, 10);
+      if( isNaN(parsed) || parsed === this._breakpoint) return;
+      
+      this._breakpoint = parsed;
+      if (this._refs.styleSheet) { this._refs.styleSheet.cssText = this.styles; } else { this._refs.innerHTML = this.styles; }
     }
 
     _setBoolean(name,value){
@@ -176,10 +202,11 @@ main {
 
         this._refs.toggle = shadowRoot.querySelector('.nav-toggle');
         this._refs.main = shadowRoot.querySelector('main');
+        this._refs.styleSheet = shadowRoot.querySelector('style');
 
         if(this._refs.toggle && this._refs.main){
             this._refs.toggle.addEventListener('click', _ => {
-                this._setBoolean('open', !this._refs.main.classList.contains('open'))
+                this._setBoolean('open', !this._refs.main.classList.contains('open'));
                 // this._refs.main.classList.toggle('open')
             })
         }
@@ -187,11 +214,14 @@ main {
     }
 
     static get observedAttributes() {
-        return ['overlap', 'open']
+        return ['overlap', 'open', 'position', 'breakpoint'];
     }
 
     attributeChangedCallback(name, o, newValue){
-        if(o !== newValue) this._setBoolean(name, !(newValue === false || newValue == null));
+        if(o !== newValue) this[name] = newValue;
+
+
+          
         // if(this._refs.main) this._refs.main.classList[(newValue === false || newValue == null)?'remove':'add'](name)
     }
 

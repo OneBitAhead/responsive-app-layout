@@ -50,10 +50,12 @@ Parameter               | Default Value | Description
 &nbsp;
 ### Properties
 
-Property               | Default Value | Description
+Property               | Type | Default Value | Description
 ----------------------- | -------------------- | -----------------------------------
-overlap | false | Whether the opened sidebar should overlap the main areas content
-open | false | Whether the sidebar is open in responsive mode
+overlap | boolean | false | Whether the opened sidebar should overlap the main areas content
+open | boolean | false | Whether the sidebar is open in responsive mode
+breakpoint | number | 768 | Defines the minimum width of the viewport (in px) where the sidebar is constantly open
+position | string | `left` | Position of the sidebar. May be `left` or `right`
 
 
 &nbsp;
