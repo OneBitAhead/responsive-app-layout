@@ -143,6 +143,7 @@ main {
         this._refs = {};
         this._position = 'left';
         this._breakpoint = 768;
+        this.sidebarCloseSelector = '[data-sidebar-close]';
     }
 
     get overlap(){
@@ -210,6 +211,17 @@ main {
                 // this._refs.main.classList.toggle('open')
             })
         }
+
+        let sidebar = shadowRoot.querySelector('slot[name="sidebar"');
+        if(sidebar) sidebar.addEventListener('click', e => {
+
+          if(!e || !e.target || !this.sidebarCloseSelector) return;
+
+          if(e.target.matches( this.sidebarCloseSelector )) {
+            this._setBoolean('open', false);
+          }
+
+        });
 
     }
 
