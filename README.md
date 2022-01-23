@@ -102,7 +102,8 @@ Styling of the slot content is done as usual, see the inline styles to set the f
 
 
 &nbsp;
-### Make the Sidebar Overlap The Main Area
+### Make the Sidebar Overlap The Main 
+[View working example](https://onebitahead.github.io/responsive-app-layout/examples/make-the-sidebar-overlap-the-main-area.html)
 ```html
 ...
 <script src="responsive-app-layout.js"></script>
@@ -119,7 +120,8 @@ document.getElementsByTagName('responsive-app-layout')[0].overlap = true;
 ```
 
 &nbsp;
-### Apply A Filter To Blur The Main Area When Sidebar Is Open
+### Apply A Filter To Blur The Main Area When Sidebar Is 
+[View working example](https://onebitahead.github.io/responsive-app-layout/examples/apply-blur-filter-to-main-area.html)
 ```html
 ...
 <style>
@@ -139,6 +141,7 @@ A nice visual effect is to blur the main area when the sidebar is open. Use the 
 
 &nbsp;
 ### Change the Menu Icon
+[View working example](https://onebitahead.github.io/responsive-app-layout/examples/change-the-menu-icon.html)
 ```html
 ...
 <responsive-app-layout>
@@ -152,7 +155,8 @@ A nice visual effect is to blur the main area when the sidebar is open. Use the 
 Use the `icon` slot to define a custom icon. It can be anything like an image, or a unicode character.
 
 &nbsp;
-### Nest Layout
+### Nest 
+[View working example](https://onebitahead.github.io/responsive-app-layout/examples/nest-layout.html)
 ```html
 ...
 
