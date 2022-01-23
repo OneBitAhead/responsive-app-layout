@@ -74,7 +74,7 @@ Examples can be found in the `examples` folder.
 
 &nbsp;
 ### Style Dimensions and Colors of Layout
-[View working example](./examples/style-dimensions-and-colors.html)
+[View working example](https://onebitahead.github.io/responsive-app-layout/examples/style-dimensions-and-colors.html)
 ```html
 ...
 <style>
