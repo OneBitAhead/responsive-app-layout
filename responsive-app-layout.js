@@ -151,15 +151,19 @@ main {
     }
 
     set overlap(value){
-        this._setBoolean('overlap', value);
+        this._setBoolean('overlap', !!value);
     }
 
     get open(){
-        return this.hasAttribute('open'); 
+        return this.hasAttribute('open');
     }
 
     set open(value){
+        const newValue = (value === false || value == null);
         this._setBoolean('open', value);
+        if('inert' in HTMLElement.prototype && this._refs.nav){ 
+            this._refs.nav.inert = (value === false || value == null)
+        }
     }
 
     get position(){
@@ -188,9 +192,9 @@ main {
 
     _setBoolean(name,value){
         if(value === false || value == null) {
-            this.removeAttribute(name);
+            if(this.hasAttribute(name)) this.removeAttribute(name);
         } else {
-            this.setAttribute(name, '');
+            if(!this.hasAttribute(name)) this.setAttribute(name, '');
         }
 
         if(this._refs.main) this._refs.main.classList[(value === false || value == null)?'remove':'add'](name)
@@ -204,24 +208,34 @@ main {
         this._refs.toggle = shadowRoot.querySelector('.nav-toggle');
         this._refs.main = shadowRoot.querySelector('main');
         this._refs.styleSheet = shadowRoot.querySelector('style');
+        this._refs.nav = shadowRoot.querySelector('nav');
+
+        let sidebar = shadowRoot.querySelector('slot[name="sidebar"');
+        if(sidebar) {
+            this._refs.sidebar = sidebar;
+            sidebar.addEventListener('click', e => {
+
+                if(!e || !e.target || !this.sidebarCloseSelector) return;
+
+                if(e.target.matches( this.sidebarCloseSelector )) {
+                    this.open = false;
+                }
+
+                e.stopImmediatePropagation();
+            }, true);
+
+        }
 
         if(this._refs.toggle && this._refs.main){
             this._refs.toggle.addEventListener('click', _ => {
-                this._setBoolean('open', !this._refs.main.classList.contains('open'));
-                // this._refs.main.classList.toggle('open')
+                this.open = !this._refs.main.classList.contains('open');
             })
         }
 
-        let sidebar = shadowRoot.querySelector('slot[name="sidebar"');
-        if(sidebar) sidebar.addEventListener('click', e => {
-
-          if(!e || !e.target || !this.sidebarCloseSelector) return;
-
-          if(e.target.matches( this.sidebarCloseSelector )) {
-            this._setBoolean('open', false);
-          }
-
-        });
+        // Init inert
+        if('inert' in HTMLElement.prototype){ 
+            this._refs.nav.inert = (this.open === false || this.open == null) 
+        }
 
     }
 
@@ -232,9 +246,6 @@ main {
     attributeChangedCallback(name, o, newValue){
         if(o !== newValue) this[name] = newValue;
 
-
-          
-        // if(this._refs.main) this._refs.main.classList[(newValue === false || newValue == null)?'remove':'add'](name)
     }
 
 }
